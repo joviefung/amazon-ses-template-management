@@ -13,6 +13,7 @@ import {
   MdCheckbox
 } from "vue-material/dist/components";
 import "vue-material/dist/vue-material.min.css";
+import "codemirror/mode/htmlmixed/htmlmixed.js";
 
 Vue.config.productionTip = false;
 

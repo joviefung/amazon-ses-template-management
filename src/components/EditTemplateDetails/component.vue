@@ -20,7 +20,6 @@
           <html-editor 
             ref="htmlEditor"
             class="html-editor"
-            :initial-content="updatedTemplate.mailHtml"
             @change="content => { updatedTemplate.mailHtml = content }"
           />
           <div v-html="updatedTemplate.mailHtml" />
