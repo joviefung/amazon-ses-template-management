@@ -4,6 +4,7 @@
 }
 
 .template-details-root {
+  position: relative;
   overflow: scroll;
 }
 
@@ -11,8 +12,16 @@
   margin: 48px 0px;
   width: 900px;
   max-width: 900px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .template-info {
   padding: 12px 0px;
+}
+
+.template-data {
+  white-space: pre-wrap
 }
