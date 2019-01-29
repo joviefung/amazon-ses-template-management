@@ -31,8 +31,22 @@
       </md-card-content>
 
       <md-card-actions>
-        <md-button @click="$emit('cancel')">Cancel</md-button>
-        <md-button @click="save">Save</md-button>
+        <md-button 
+          :disabled="loading"
+          @click="$emit('cancel')"
+        >Cancel</md-button>
+        <md-button 
+          :disabled="loading"
+          @click="save"
+        >
+          <md-progress-spinner
+            v-if="loading"
+            :md-diameter="20" 
+            :md-stroke="2" 
+            md-mode="indeterminate" 
+          />
+          <span v-else>Save</span>
+        </md-button>
       </md-card-actions>
     </md-card>
   </div>

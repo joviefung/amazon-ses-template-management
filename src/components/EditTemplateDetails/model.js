@@ -13,6 +13,7 @@ export default {
   },
   data() {
     return {
+      loading: false,
       updatedTemplate: new TemplateDetails()
     };
   },
@@ -40,28 +41,37 @@ export default {
   },
   methods: {
     save() {
+      this.loading = true;
       if (this.isAdding) {
-        createTemplate(this.updatedTemplate).then(
-          () => {
-            this.$emit("showMessage", "Template added.");
-            this.$emit("change");
-            this.$emit("cancel");
-          },
-          err => {
-            this.$emit("showMessage", err);
-          }
-        );
+        createTemplate(this.updatedTemplate)
+          .then(
+            () => {
+              this.$emit("showMessage", "Template added.");
+              this.$emit("add", this.updatedTemplate.name);
+              this.$emit("cancel");
+            },
+            err => {
+              this.$emit("showMessage", err);
+            }
+          )
+          .finally(() => {
+            this.loading = false;
+          });
       } else {
-        updateTemplate(this.updatedTemplate).then(
-          () => {
-            this.$emit("showMessage", "Template updated.");
-            this.$emit("change");
-            this.$emit("cancel");
-          },
-          err => {
-            this.$emit("showMessage", err);
-          }
-        );
+        updateTemplate(this.updatedTemplate)
+          .then(
+            () => {
+              this.$emit("showMessage", "Template updated.");
+              this.$emit("edit");
+              this.$emit("cancel");
+            },
+            err => {
+              this.$emit("showMessage", err);
+            }
+          )
+          .finally(() => {
+            this.loading = false;
+          });
       }
     }
   }

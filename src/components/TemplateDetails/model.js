@@ -1,40 +1,27 @@
-import { getTemplate, deleteTemplate } from "../../modules/ses";
+import { deleteTemplate } from "../../modules/ses";
 import TemplateDetails from "../../models/TemplateDetails";
 
 export default {
   name: "template-details",
   props: {
-    templateName: String
+    loading: Boolean,
+    template: { type: TemplateDetails, default: () => new TemplateDetails() }
   },
   data() {
     return {
-      template: new TemplateDetails(),
       templateData: {},
       confirmDelete: false,
-      showTemplateData: false,
-      loading: false
+      showTemplateData: false
     };
   },
   watch: {
-    templateName() {
-      this.refresh();
+    template() {
+      if (this.template) {
+        this.getTemplateData();
+      }
     }
   },
   methods: {
-    refresh() {
-      this.loading = true;
-      getTemplate(this.templateName).then(
-        template => {
-          this.template = template;
-          this.getTemplateData();
-          this.loading = false;
-        },
-        err => {
-          this.$emit("showMessage", err);
-          this.loading = false;
-        }
-      );
-    },
     getTemplateData() {
       this.templateData = {};
       const content =
@@ -86,10 +73,10 @@ export default {
     },
     remove() {
       this.confirmDelete = false;
-      deleteTemplate(this.templateName).then(
+      deleteTemplate(this.template.name).then(
         () => {
           this.$emit("showMessage", "Template deleted.");
-          this.$emit("change");
+          this.$emit("delete");
         },
         err => {
           this.$emit("showMessage", err);

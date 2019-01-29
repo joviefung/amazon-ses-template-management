@@ -1,6 +1,7 @@
 <template>
   <div class="template-details-root md-layout md-alignment-center-center">
     <md-card class="template-details-card md-layout-item">
+      
       <template v-if="loading">
         <div class="md-layout md-alignment-center-center">
           <md-progress-spinner 
@@ -10,8 +11,7 @@
           />
         </div>
       </template>
-
-      <template v-else>
+      <template v-else-if="template">
         <md-card-header>
           <md-card-header-text>
             <div class="md-layout md-alignment-center-space-between">

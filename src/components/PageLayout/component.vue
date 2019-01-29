@@ -3,31 +3,36 @@
     <login-dialog
       v-model="showLoginDialog"
     />
-
     <TemplateList
       v-if="!showLoginDialog"
       ref="templateList"
       class="md-layout-item template-list md-size-30"
+      :loading="loadingTemplates"
+      :templates="templates"
       @selectTemplate="templateName => { selectedTemplateName = templateName; showEditTemplate = false; }"
-      @createTemplate="showEditTemplate = true"
+      @createTemplate="showEditTemplate = true; editingTemplate = null;"
       @showMessage="e => { message = e; }"
     />
     <TemplateDetails
-      v-show="!showLoginDialog && !showEditTemplate"
+      v-if="!showLoginDialog"
+      v-show="!showEditTemplate"
       ref="templateDetails"
-      :template-name="selectedTemplateName"
+      :loading="loadingTemplateDetails"
+      :template="selectedTemplate"
       class="md-layout-item md-size-70" 
-      @edit="template => { selectedTemplate = template; showEditTemplate = true; }"
-      @change="refreshTemplate(true)"
+      @edit="editingTemplate = selectedTemplate; showEditTemplate = true;"
+      @delete="deleteTemplate"
       @showMessage="e => { message = e; }"
     />
     <EditTemplateDetails
-      v-show="!showLoginDialog && showEditTemplate"
+      v-if="!showLoginDialog"
+      v-show="showEditTemplate"
       :is-visible="showEditTemplate"
-      :template="selectedTemplate"
+      :template="editingTemplate"
       class="md-layout-item md-size-70" 
-      @cancel="showEditTemplate = false; selectedTemplate = null;"
-      @change="refreshTemplate"
+      @cancel="showEditTemplate = false;"
+      @add="addTemplate"
+      @edit="refreshTemplateDetails"
       @showMessage="e => { message = e; }"
     />
 
