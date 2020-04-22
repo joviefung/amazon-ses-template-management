@@ -4,8 +4,9 @@
 }
 
 .template-details-root {
+  height: 100%;
   position: relative;
-  overflow: scroll;
+  overflow: auto;
 }
 
 .template-details-card {

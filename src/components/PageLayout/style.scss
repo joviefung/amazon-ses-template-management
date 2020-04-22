@@ -4,6 +4,8 @@
   overflow: hidden;
 }
 
-.template-list {
+.template-list-container {
+  height: 100%;
   position: relative;
+  overflow: auto;
 }
