@@ -12,7 +12,17 @@ export const createSES = (accessKeyId, secretAccessKey, region) => {
   });
 };
 
-export const regions = ["us-east-1", "us-west-2", "eu-west-1"];
+export const regions = [
+  "us-east-1",
+  "us-west-2",
+  "eu-west-1",
+  "ap-southeast-2",
+  "ap-south-1",
+  "ca-central-1",
+  "eu-central-1",
+  "eu-west-2",
+  "sa-east-1"
+];
 
 export const getAllTemplates = () => {
   const params = {
