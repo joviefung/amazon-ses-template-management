@@ -25,7 +25,7 @@
       <md-checkbox v-model="rememberAccount" class="md-primary">Remember my account</md-checkbox>
     </md-dialog-content>
     <md-dialog-actions>
-      <md-button @click="login">Login</md-button>
+      <md-button class="dialog-button md-primary" @click="login">Login</md-button>
     </md-dialog-actions>
   </md-dialog>
 </template>

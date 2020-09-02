@@ -1,26 +1,5 @@
 @import "~vue-material/dist/theme/engine";
 
-.md-list {
-  padding-top: 0px;
-}
-
-.add-button {
-  background-color: md-get-palette-color(grey, 100);
-}
-
-.created-datetime-text {
-  line-height: 24px;
-  display: flex;
-  align-items: center;
-  .icon {
-    width: 18px;
-    font-size: 18px !important;
-    padding-right: 4px;
-  }
-}
-
-.spliter {
-  position: absolute;
-  width: 3px;
-  height: 100%;
+.dialog-button {
+  z-index: 0
 }
